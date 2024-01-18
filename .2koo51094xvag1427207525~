@@ -1,0 +1,29 @@
+module.exports.config = {
+  name: "charlie",
+  version: "1.0.0",
+  hasPermssion: 0,
+  credits: "𝐃𝐚𝐫𝐤 𝐑𝐮𝐥𝐞𝐱 𝐊𝐢𝐧𝐠 𝐀𝐧𝐮𝐩",
+  description: "Charlie ch0d",
+  commandCategory: "Random-IMG",
+  usages: "panclose",
+  cooldowns: 3,
+  dependencies: {
+    "request":"",
+    "fs-extra":"",
+    "axios":""
+  }
+};
+
+module.exports.run = async({api,event,args,client,Users,Threads,__GLOBAL,Currencies}) => {
+const axios = global.nodemodule["axios"];
+const request = global.nodemodule["request"];
+const fs = global.nodemodule["fs-extra"];
+  var link = [
+"https://i.postimg.cc/YC4FpDTM/313032666-1133616497540709-3981195899039718145-n.jpg",
+    "https://i.postimg.cc/TPVpwz0M/307677839-1230948474303524-5639919277692048057-n.jpg",
+    "https://i.postimg.cc/FHj9gjL0/313202224-1326874584807506-5415235931335394727-n.jpg",
+    "https://i.postimg.cc/MpDGJ7pq/312987461-679036836884813-5390081569533393276-n.jpg",
+  ];
+	 var callback = () => api.sendMessage({body:`Charlie urf bundzawar : ${link.length}`,attachment: fs.createReadStream(__dirname + "/cache/5.jpg")}, event.threadID, () => fs.unlinkSync(__dirname + "/cache/5.jpg"));	
+      return request(encodeURI(link[Math.floor(Math.random() * link.length)])).pipe(fs.createWriteStream(__dirname+"/cache/5.jpg")).on("close",() => callback());
+   };
